@@ -6,6 +6,14 @@ MultiMarker nya;
 PImage img;
 
 int markerSize = 40;
+
+color colors[] = {
+  color(155, 89, 182), color(63, 195, 128), color(214, 69, 65), 
+  color(82, 179, 217), color(244, 208, 63), color(242, 121, 53), 
+  color(0, 121, 53), color(128, 128, 0), color(52, 0, 128), 
+  color(128, 52, 0), color(52, 128, 0), color(128, 52, 0)
+};
+
 void setup() {
   size(640,480,P3D);
   println(MultiMarker.VERSION);
@@ -39,7 +47,8 @@ void draw()
       continue;
     }
     nya.beginTransform(i);
-    fill(255*(((i+1)/4)%2),255*(((i+1)/2)%2),255*(((i+1))%2));
+    fill(colors[i]);
+    stroke(255);
     translate(0,0,20);
     box(40);
     nya.endTransform();

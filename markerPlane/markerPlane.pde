@@ -5,6 +5,14 @@ Capture cam;
 MultiMarker nya;
 PImage img;
 
+color colors[] = {
+  color(155, 89, 182), color(63, 195, 128), color(214, 69, 65), 
+  color(82, 179, 217), color(244, 208, 63), color(242, 121, 53), 
+  color(0, 121, 53), color(128, 128, 0), color(52, 0, 128), 
+  color(128, 52, 0), color(52, 128, 0), color(128, 52, 0)
+};
+
+
 void setup() {
   size(640, 480, P3D);
   cam=new Capture(this, 640, 480);
@@ -30,12 +38,40 @@ void draw()
     PVector p=nya.screen2MarkerCoordSystem(0, mouseX, mouseY);
     nya.beginTransform(0);
     
-    fill(255, 0, 0, 100);
+    fill(colors[0], 100);
+    rect(-120, -120, 80, 80);
+    fill(colors[1], 100);
+    rect(-40, -120, 80, 80);
+    fill(colors[2], 100);
+    rect(40, -120, 80, 80);
+    
+    fill(colors[3], 100);
+    rect(-120, -40, 80, 80);
+    fill(colors[4], 100);
     rect(-40, -40, 80, 80);
+    fill(colors[5], 100);
+    rect(40, -40, 80, 80);
+    
+    fill(colors[6], 100);
+    rect(-120, 40, 80, 80);
+    fill(colors[7], 100);
+    rect(-40, 40, 80, 80);
+    fill(colors[8], 100);
+    rect(40, 40, 80, 80);
+    
     stroke(255, 255, 0);
+    noFill();
     ellipse((int)p.x, (int)p.y, 20-c%20, 20-c%20);
-    println(p.x,p.y);
+    
     nya.endTransform();
+    
+    float x = p.x/80.+1;
+    float y = p.y/80.+1;
+    println(p.x,p.y, x, y);
+    if(x<=2.5 && x>=-0.5 && y<=2.5 && y>=-0.5){
+      fill(colors[round(x)+round(y)*3]);
+      rect(500,20,120,120);
+    }
   }
 }
 
